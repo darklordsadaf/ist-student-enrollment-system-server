@@ -62,8 +62,8 @@ client.connect(err => {
             })
     })
 
-    app.get('/students/:department/:roll', (req, res) => {
-        studentCollection.find({ roll: req.params.roll, department: req.params.department })
+    app.get('/students/:id', (req, res) => {
+        studentCollection.find({ _id: ObjectId(req.params.id) })
             .toArray((err, documents) => {
                 res.send(documents[0]);
             })
@@ -105,6 +105,7 @@ client.connect(err => {
     })
 
     app.get('/departments', (req, res) => {
+        console.log(res)
         departmentCollection.find({})
             .toArray((err, documents) => {
                 res.send(documents);
